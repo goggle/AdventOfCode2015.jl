@@ -15,3 +15,11 @@ using Test
     @test AdventOfCode2015.Day01.part2("()())") == 5
     @test AdventOfCode2015.Day01.day01() == [74, 1795]
 end
+
+@testset "Day 2" begin
+    @test AdventOfCode2015.Day02.part1([[2,3,4]]) == 58
+    @test AdventOfCode2015.Day02.part1([[1,1,10]]) == 43
+    @test AdventOfCode2015.Day02.part2([[2,3,4]]) == 34
+    @test AdventOfCode2015.Day02.part2([[1,1,10]]) == 14
+    @test AdventOfCode2015.Day02.day02() == [1588178, 3783758]
+end
