@@ -1,0 +1,4 @@
+name = "AdventOfCode2015"
+uuid = "95b9d683-514e-44a1-a6f8-64f51ab07dd8"
+authors = ["Alexander Seiler <seileralex@gmail.com>"]
+version = "0.1.0"
