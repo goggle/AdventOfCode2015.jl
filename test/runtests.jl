@@ -39,3 +39,11 @@ end
     @test AdventOfCode2015.Day04.solve("pqrstuv", 5) == 1048970
     @test AdventOfCode2015.Day04.day04() == [117946, 3938038]
 end
+
+@testset "Day 5" begin
+    @test AdventOfCode2015.Day05.isnice("ugknbfddgicrmopn") == true
+    @test AdventOfCode2015.Day05.isnice("aaa") == true
+    @test AdventOfCode2015.Day05.isnice("jchzalrnumimnmhp") == false
+    @test AdventOfCode2015.Day05.isnice("haegwjzuvuyypxyu") == false
+    @test AdventOfCode2015.Day05.isnice("dvszwmarrgswjxmb") == false
+end
