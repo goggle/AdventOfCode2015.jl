@@ -46,4 +46,9 @@ end
     @test AdventOfCode2015.Day05.isnice("jchzalrnumimnmhp") == false
     @test AdventOfCode2015.Day05.isnice("haegwjzuvuyypxyu") == false
     @test AdventOfCode2015.Day05.isnice("dvszwmarrgswjxmb") == false
+    @test AdventOfCode2015.Day05.isnice2("qjhvhtzxzqqjkmpb") == true
+    @test AdventOfCode2015.Day05.isnice2("xxyxx") == true
+    @test AdventOfCode2015.Day05.isnice2("uurcxstgmygtbstg") == false
+    @test AdventOfCode2015.Day05.isnice2("ieodomkazucvgmuy") == false
+    @test AdventOfCode2015.Day05.day05() == [238, 69]
 end
