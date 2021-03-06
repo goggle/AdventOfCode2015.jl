@@ -33,3 +33,9 @@ end
     @test AdventOfCode2015.Day03.part2("^v^v^v^v^v") == 11
     @test AdventOfCode2015.Day03.day03() == [2081, 2341]
 end
+
+@testset "Day 4" begin
+    @test AdventOfCode2015.Day04.solve("abcdef", 5) == 609043
+    @test AdventOfCode2015.Day04.solve("pqrstuv", 5) == 1048970
+    @test AdventOfCode2015.Day04.day04() == [117946, 3938038]
+end
