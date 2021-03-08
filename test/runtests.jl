@@ -52,3 +52,11 @@ end
     @test AdventOfCode2015.Day05.isnice2("ieodomkazucvgmuy") == false
     @test AdventOfCode2015.Day05.day05() == [238, 69]
 end
+
+@testset "Day 6" begin
+    sample = "turn on 0,0 through 999,999\n" *
+             "toggle 0,0 through 999,0\n" *
+             "turn off 499,499 through 500,500\n"
+    @test AdventOfCode2015.Day06.day06(sample) == [998996, 1001996]
+    @test AdventOfCode2015.Day06.day06() == [569999, 17836115]
+end
