@@ -60,3 +60,26 @@ end
     @test AdventOfCode2015.Day06.day06(sample) == [998996, 1001996]
     @test AdventOfCode2015.Day06.day06() == [569999, 17836115]
 end
+
+@testset "Day 7" begin
+    sample = "123 -> x\n" *
+             "456 -> y\n" *
+             "x AND y -> d\n" *
+             "x OR y -> e\n" *
+             "x LSHIFT 2 -> f\n" *
+             "y RSHIFT 2 -> g\n" *
+             "NOT x -> h\n" *
+             "NOT y -> i\n"
+    wires = AdventOfCode2015.Day07.setup(sample)
+    AdventOfCode2015.Day07.run!(wires, sample)
+    @test take!(wires["x"].value) == 123
+    @test take!(wires["y"].value) == 456
+    @test take!(wires["d"].value) == 72
+    @test take!(wires["e"].value) == 507
+    @test take!(wires["f"].value) == 492
+    @test take!(wires["g"].value) == 114
+    @test take!(wires["h"].value) == 65412
+    @test take!(wires["i"].value) == 65079
+
+    @test AdventOfCode2015.Day07.day07() == [956, 40149]
+end
