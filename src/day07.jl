@@ -31,7 +31,7 @@ function setup(input::AbstractString)
             ids = (line[1], line[3])
         end
         for id in ids
-            wires[id] = Wire(id, Channel{UInt16}(100))
+            wires[id] = Wire(id, Channel{UInt16}(1))
             v = tryparse(Int, id)
             if v != nothing
                 put!(wires[id].value, v)
