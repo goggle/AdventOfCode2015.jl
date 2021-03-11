@@ -83,3 +83,12 @@ end
 
     @test AdventOfCode2015.Day07.day07() == [956, 40149]
 end
+
+@testset "Day 8" begin
+    sample = "\"\"\n" *
+             "\"abc\"\n" *
+             "\"aaa\\\"aaa\"\n" *
+             "\"\\x27\""
+    @test AdventOfCode2015.Day08.day08(sample) == [12, 19]
+    @test AdventOfCode2015.Day08.day08() == [1350, 2085]
+end
