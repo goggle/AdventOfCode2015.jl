@@ -92,3 +92,11 @@ end
     @test AdventOfCode2015.Day08.day08(sample) == [12, 19]
     @test AdventOfCode2015.Day08.day08() == [1350, 2085]
 end
+
+@testset "Day 9" begin
+    sample = "London to Dublin = 464\n" *
+             "London to Belfast = 518\n" *
+             "Dublin to Belfast = 141\n"
+    @test AdventOfCode2015.Day09.day09(sample) == [605, 982]
+    @test AdventOfCode2015.Day09.day09() == [141, 736]
+end
