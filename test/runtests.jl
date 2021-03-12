@@ -104,3 +104,7 @@ end
 @testset "Day 10" begin
     @test AdventOfCode2015.Day10.day10() == [252594, 3579328]
 end
+
+@testset "Day 11" begin
+    @test AdventOfCode2015.Day11.day11() == ["hepxxyzz", "heqaabcc"]
+end
