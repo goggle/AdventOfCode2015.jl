@@ -100,3 +100,7 @@ end
     @test AdventOfCode2015.Day09.day09(sample) == [605, 982]
     @test AdventOfCode2015.Day09.day09() == [141, 736]
 end
+
+@testset "Day 10" begin
+    @test AdventOfCode2015.Day10.day10() == [252594, 3579328]
+end
