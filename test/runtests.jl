@@ -129,3 +129,10 @@ end
     @test AdventOfCode2015.Day13.day13(sample) == [330, 286]
     @test AdventOfCode2015.Day13.day13() == [733, 725]
 end
+
+@testset "Day 14" begin
+    sample = "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.\n" *
+             "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.\n"
+    @test AdventOfCode2015.Day14.day14(sample) == [2660, 1564]
+    @test AdventOfCode2015.Day14.day14() == [2640, 1102]
+end
