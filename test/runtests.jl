@@ -136,3 +136,10 @@ end
     @test AdventOfCode2015.Day14.day14(sample) == [2660, 1564]
     @test AdventOfCode2015.Day14.day14() == [2640, 1102]
 end
+
+@testset "Day 15" begin
+    sample = "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8\n" *
+             "Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3\n"
+    @test AdventOfCode2015.Day15.day15(sample) == [62842880, 57600000]
+    @test AdventOfCode2015.Day15.day15() == [21367368, 1766400]
+end
