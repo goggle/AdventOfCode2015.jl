@@ -147,3 +147,14 @@ end
 @testset "Day 16" begin
     @test AdventOfCode2015.Day16.day16() == [373, 260]
 end
+
+@testset "Day 17" begin
+    sample = "20\n15\n10\n5\n5\n"
+    data = parse.(Int, split(sample))
+    p1, ml = AdventOfCode2015.Day17.part1(data, 25)
+    p2 = AdventOfCode2015.Day17.part2(data, 25, ml)
+    @test p1 == 4
+    @test p2 == 3
+
+    @test AdventOfCode2015.Day17.day17() == [654, 57]
+end
