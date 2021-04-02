@@ -162,3 +162,22 @@ end
 @testset "Day 18" begin
     @test AdventOfCode2015.Day18.day18() == [768, 781]
 end
+
+@testset "Day 19" begin
+    sample = "H => HO\n" *
+             "H => OH\n" *
+             "O => HH\n" *
+             "\n" *
+             "HOH\n"
+    seq, tr = AdventOfCode2015.Day19.parse_input(sample)
+    toks = AdventOfCode2015.Day19.tokenize(seq, tr)
+    @test AdventOfCode2015.Day19.part1(toks, tr) == 4
+
+    sample2 = "e => H\n" *
+              "e => O\n" *
+              "H => HO\n" *
+              "H => OH\n" *
+              "O => HH\n" *
+              "\n" *
+              "HOHOHO\n"
+end
