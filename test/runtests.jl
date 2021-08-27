@@ -181,3 +181,7 @@ end
               "\n" *
               "HOHOHO\n"
 end
+
+@testset "Day 20" begin
+    @test AdventOfCode2015.Day20.day20() == [776160, 786240]
+end
