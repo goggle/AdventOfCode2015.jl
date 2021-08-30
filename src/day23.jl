@@ -2,63 +2,99 @@ module Day23
 
 using AdventOfCode2015
 
-struct Instruction
-    name::String
-    register::String
+abstract type Instruction end
+
+struct Half <: Instruction
+    register::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::Half)
+    registers[instruction.register] ÷= 2
+    return counter + 1
+end
+
+struct Triple <: Instruction
+    register::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::Triple)
+    registers[instruction.register] *= 3
+    return counter + 1
+end
+
+struct Increment <: Instruction
+    register::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::Increment)
+    registers[instruction.register] += 1
+    return counter + 1
+end
+
+struct Jump <: Instruction
     value::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::Jump)
+    return counter + instruction.value
+end
+
+struct JumpIfEven <: Instruction
+    register::Int
+    value::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::JumpIfEven)
+    mod(registers[instruction.register], 2) == 0 && return counter + instruction.value
+    return counter + 1
+end
+
+struct JumpIfOne <: Instruction
+    register::Int
+    value::Int
+end
+
+function execute!(registers::Array{Int,1}, counter::Int, instruction::JumpIfOne)
+    registers[instruction.register] == 1 && return counter + instruction.value
+    return counter + 1
 end
 
 function day23(input::String = readInput(joinpath(@__DIR__, "..", "data", "day23.txt")))
     instructions = parse_input(input)
-    return [run_program(instructions, 0, 0), run_program(instructions, 1, 0)]
+    return [run!([0, 0], instructions), run!([1, 0], instructions)]
+
 end
 
 function parse_input(input::String)
-    instructions = []
-    spinput = split(rstrip(input), "\n")
+    instructions = Array{Instruction,1}()
     for line in split.(split(rstrip(input), "\n"))
-        if line[1] in ("hlf", "tpl", "inc")
-            push!(instructions, Instruction(line[1], line[2][1:1], 0))
+        if line[1] == "hlf"
+            line[2][1] == 'a' ? register = 1 : register = 2
+            push!(instructions, Half(register))
+        elseif line[1] == "tpl"
+            line[2][1] == 'a' ? register = 1 : register = 2
+            push!(instructions, Triple(register))
+        elseif line[1] == "inc"
+            line[2][1] == 'a' ? register = 1 : register = 2
+            push!(instructions, Increment(register))
         elseif line[1] == "jmp"
-            push!(instructions, Instruction(line[1], "", parse(Int, line[2])))
-        elseif line[1] in ("jie", "jio")
-            push!(instructions, Instruction(line[1], line[2][1:1], parse(Int, line[3])))
+            push!(instructions, Jump(parse(Int, line[2])))
+        elseif line[1] == "jie"
+            line[2][1] == 'a' ? register = 1 : register = 2
+            push!(instructions, JumpIfEven(register, parse(Int, line[3])))
+        elseif line[1] == "jio"
+            line[2][1] == 'a' ? register = 1 : register = 2
+            push!(instructions, JumpIfOne(register, parse(Int, line[3])))
         end
     end
     return instructions
 end
 
-function run_program(instructions, a, b)
+function run!(registers::Array{Int,1}, instructions::Array{Instruction,1})
     counter = 1
     maxcounter = length(instructions)
-    registers = [a, b]
     while counter >= 1 && counter <= maxcounter
-        instruction = instructions[counter]
-        instruction.register == "a" ? j = 1 : j = 2
-        if instruction.name == "hlf"
-            registers[j] ÷= 2
-            counter += 1
-        elseif instruction.name == "tpl"
-            registers[j] *= 3
-            counter += 1
-        elseif instruction.name == "inc"
-            registers[j] += 1
-            counter += 1
-        elseif instruction.name == "jmp"
-            counter += instruction.value
-        elseif instruction.name == "jie"
-            if mod(registers[j], 2) == 0
-                counter += instruction.value
-            else
-                counter += 1
-            end
-        elseif instruction.name == "jio"
-            if registers[j] == 1
-                counter += instruction.value
-            else
-                counter += 1
-            end
-        end
+        counter = execute!(registers, counter, instructions[counter])
     end
     return registers[2]
 end
